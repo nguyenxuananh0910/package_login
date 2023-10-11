@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:package_login/src/presentation/pages/login/login_controller.dart';
 import 'package:package_login/src/presentation/pages/login/login_page.dart';
 
-class RouterConfigs {
+class RouterUserConfigs {
   static final List<GetPage<void>> routes = [
     GetPage(
       name: LoginView.routeName,

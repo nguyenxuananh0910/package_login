@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Phan anh',
-      getPages: RouterConfigs.routes,
+      getPages: RouterUserConfigs.routes,
       debugShowCheckedModeBanner: false,
       initialBinding: GlobalBinding(),
       enableLog: true,
