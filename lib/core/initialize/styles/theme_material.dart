@@ -72,8 +72,25 @@ class CoreTheme {
           fontWeight: FontWeight.bold,
         ),
       ),
-      inputDecorationTheme: const InputDecorationTheme(
-        labelStyle: TextStyle(
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.all(10),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(28),
+          borderSide: BorderSide(color: Colors.red[300]!),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(28),
+          borderSide: BorderSide(color: Colors.grey[300]!),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(28),
+          borderSide: BorderSide(color: Colors.grey[300]!),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey[300]!),
+          borderRadius: BorderRadius.circular(28),
+        ),
+        labelStyle: const TextStyle(
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w700,
           fontSize: 14,

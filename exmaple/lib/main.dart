@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:package_login/core/initialize/global_binding.dart';
+import 'package:package_login/core/initialize/styles/theme_material.dart';
 import 'package:package_login/core/routers/router_configs.dart';
 import 'package:package_login/package_login.dart';
 
-void _initUserPackage() {
-  CoreUserPackage.init(
-    urlAPI: '',
-  );
-}
+// void _initUserPackage() {
+//   CoreUserPackage.init(
+//     urlAPI: '',
+//   );
+// }
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  _initUserPackage();
+  // _initUserPackage();
   runApp(const MyApp());
 }
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       getPages: RouterUserConfigs.routes,
       debugShowCheckedModeBanner: false,
       initialBinding: GlobalBinding(),
+      theme: CoreTheme.theme,
       enableLog: true,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

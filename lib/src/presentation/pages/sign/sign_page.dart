@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_login/core/utils/error_empty.dart';
 import 'package:package_login/core/utils/extension.dart';
-import 'package:package_login/src/presentation/pages/login/login_controller.dart';
-import 'package:package_login/src/presentation/pages/sign/sign_page.dart';
+import 'package:package_login/src/presentation/pages/sign/sign_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  static const String routeName = '/LoginView';
-  const LoginView({Key? key}) : super(key: key);
+class SignPage extends GetView<SignController> {
+  static const String routeName = '/SignPage';
+  const SignPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +18,17 @@ class LoginView extends GetView<LoginController> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 80, bottom: 40),
+                  padding: const EdgeInsets.only(top: 30, bottom: 20),
                   child: Column(
                     children: [
-                      Text('Welcome Back!',
+                      Text('Sign Up to!',
                           style: Get.theme.textTheme.headlineMedium
                               ?.copyWith(fontWeight: FontWeight.bold)),
                       const SizedBox(
                         height: 8,
                       ),
                       Text(
-                        "To your favorite Book app.",
+                        "To TravelEase Book app.",
                         style: Get.theme.textTheme.bodySmall,
                       ),
                     ],
@@ -41,12 +40,72 @@ class LoginView extends GetView<LoginController> {
                       borderRadius: BorderRadius.circular(28)),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 36.0, horizontal: 20),
+                        vertical: 20.0, horizontal: 20),
                     child: Form(
                       key: controller.keyForm,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(
+                            'Your Name',
+                            style: Get.theme.textTheme.bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Obx(
+                            () => TextFormField(
+                              validator: (value) =>
+                                  value?.checkEmpty(ErrorEmptys.name),
+                              // onTap: () => controller.slideController.hide(),
+                              controller: controller.nameEditController,
+                              style:
+                                  context.theme.textTheme.bodyMedium?.copyWith(
+                                      // color: context.theme.hintColor,
+                                      ),
+                              decoration: InputDecoration(
+                                alignLabelWithHint: true,
+                                errorText: controller.nameError.value,
+                                hintText: 'Your Name',
+                                hintStyle: context.theme.textTheme.bodySmall
+                                    ?.copyWith(color: Colors.grey[500]),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Your Phone',
+                            style: Get.theme.textTheme.bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Obx(
+                            () => TextFormField(
+                              validator: (value) =>
+                                  value?.checkEmpty(ErrorEmptys.phone),
+                              // onTap: () => controller.slideController.hide(),
+                              controller: controller.phoneEditController,
+                              style:
+                                  context.theme.textTheme.bodyMedium?.copyWith(
+                                      // color: context.theme.hintColor,
+                                      ),
+                              decoration: InputDecoration(
+                                alignLabelWithHint: true,
+                                errorText: controller.phoneError.value,
+                                hintText: 'Your Phone',
+                                hintStyle: context.theme.textTheme.bodySmall
+                                    ?.copyWith(color: Colors.grey[500]),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           Text(
                             'Your Email',
                             style: Get.theme.textTheme.bodyMedium
@@ -75,10 +134,10 @@ class LoginView extends GetView<LoginController> {
                             ),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Text(
-                            'Your Password',
+                            'Password',
                             style: Get.theme.textTheme.bodyMedium
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -117,19 +176,47 @@ class LoginView extends GetView<LoginController> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(''),
-                              Text(
-                                'Forgot password?',
-                                style: Get.textTheme.bodySmall!
-                                    .copyWith(color: Colors.redAccent),
-                              ),
-                            ],
+                          Text(
+                            'Confirm Password',
+                            style: Get.theme.textTheme.bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(
-                            height: 10,
+                            height: 4,
+                          ),
+                          Obx(
+                            () => TextFormField(
+                              controller:
+                                  controller.confirmPasswordEditController,
+                              obscureText: !controller.showPassword.value,
+                              validator: (value) =>
+                                  value?.checkEmpty(ErrorEmptys.password),
+                              style:
+                                  context.theme.textTheme.bodyMedium?.copyWith(
+                                      // color: context.theme.hintColor,
+                                      ),
+                              decoration: InputDecoration(
+                                errorText:
+                                    controller.confirmPasswordError.value,
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    controller.showPassword.value
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: Colors.grey,
+                                  ),
+                                  onPressed:
+                                      controller.togglePasswordVisibility,
+                                ),
+                                alignLabelWithHint: true,
+                                hintText: 'Enter your password',
+                                hintStyle: context.theme.textTheme.bodySmall
+                                    ?.copyWith(color: Colors.grey[500]),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
                           ),
                           SizedBox(
                             width: Get.width,
@@ -143,7 +230,7 @@ class LoginView extends GetView<LoginController> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Text(
-                                      'Login',
+                                      'Sign In',
                                       style: Get.theme.textTheme.titleMedium
                                           ?.copyWith(
                                               color: Colors.white,
@@ -179,10 +266,10 @@ class LoginView extends GetView<LoginController> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Don't have ann account? ",
+                              Text("Already have account? ",
                                   style: Get.theme.textTheme.bodyMedium),
                               InkWell(
-                                onTap: () => Get.toNamed(SignPage.routeName),
+                                onTap: () => Get.back(),
                                 child: Text(
                                   "Sign Up ",
                                   style: Get.theme.textTheme.bodyMedium
