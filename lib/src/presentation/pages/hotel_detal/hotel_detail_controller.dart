@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HotelDetailController extends GetxController {
@@ -15,6 +14,12 @@ class HotelDetailController extends GetxController {
   ];
   final showItems = 0.obs;
   final isExpanded = false.obs;
+  final RxBool _isLoading = RxBool(false);
+  bool showPermitAfterSearch = true;
+  set isLoading(bool value) {
+    _isLoading.value = value;
+  }
+
   @override
   void onInit() {
     loadData();

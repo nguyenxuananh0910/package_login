@@ -152,7 +152,7 @@ class HotelDetailPage extends GetView<HotelDetailController> {
                         }),
                   )),
               const Description(),
-              const Review()
+              const Review(),
             ],
           ),
         ),
@@ -567,6 +567,19 @@ class GetFooter extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                  color: Colors.deepOrange,
+                  borderRadius: BorderRadius.circular(30)),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  'Select Room',
+                  style: Get.textTheme.titleLarge!.copyWith(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
+            ),
             Row(
               children: [
                 Text(
@@ -577,19 +590,6 @@ class GetFooter extends StatelessWidget {
                 Text('/ per night ', style: Get.textTheme.bodySmall!),
               ],
             ),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                  color: Colors.deepOrange,
-                  borderRadius: BorderRadius.circular(30)),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Text(
-                  'Book Now!',
-                  style: Get.textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-              ),
-            )
           ],
         ),
       ),

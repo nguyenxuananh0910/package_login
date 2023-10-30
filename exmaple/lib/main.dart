@@ -31,11 +31,17 @@ class MyApp extends StatelessWidget {
       initialBinding: GlobalBinding(),
       theme: CoreTheme.theme,
       enableLog: true,
+      locale: const Locale('vi', 'VN'),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      supportedLocales: const [
+        Locale('vi', 'VN'),
+        Locale('en', 'US'),
+      ],
+      fallbackLocale: const Locale('vi', 'VN'),
       home: Scaffold(
         body: Center(
           child: Column(

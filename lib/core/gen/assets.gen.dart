@@ -12,7 +12,18 @@ import 'package:flutter/widgets.dart';
 class $AsssetGen {
   const $AsssetGen();
 
+  $AsssetAnimationsGen get animations => const $AsssetAnimationsGen();
   $AsssetImagesGen get images => const $AsssetImagesGen();
+}
+
+class $AsssetAnimationsGen {
+  const $AsssetAnimationsGen();
+
+  /// File path: assset/animations/loading.json
+  String get loading => 'assset/animations/loading.json';
+
+  /// List of all assets
+  List<String> get values => [loading];
 }
 
 class $AsssetImagesGen {
@@ -21,8 +32,12 @@ class $AsssetImagesGen {
   /// File path: assset/images/noImage.jpg
   AssetGenImage get noImage => const AssetGenImage('assset/images/noImage.jpg');
 
+  /// File path: assset/images/no_image_user.jpg
+  AssetGenImage get noImageUser =>
+      const AssetGenImage('assset/images/no_image_user.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [noImage];
+  List<AssetGenImage> get values => [noImage, noImageUser];
 }
 
 class Assets {
