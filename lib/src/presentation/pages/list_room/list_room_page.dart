@@ -1,0 +1,371 @@
+import 'package:extended_image/extended_image.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:package_login/core/constrants/localVariable.dart';
+import 'package:package_login/core/gen/assets.gen.dart';
+import 'package:package_login/src/presentation/pages/booking/booking_page.dart';
+import 'package:package_login/src/presentation/pages/list_room/list_room_controller.dart';
+
+class ListRoomPage extends GetView<ListRoomController> {
+  static const String routeName = '/ListRoomPage';
+  const ListRoomPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      appBar: Appbar(),
+      body: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const ListImage(),
+                  const Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
+                    child: Text('Standard Room'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: SizedBox(
+                      height: 30,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 4,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.bedroom_parent_outlined,
+                                  size: 20,
+                                ),
+                                Text(
+                                  '1 king bed',
+                                  style: Get.textTheme.bodySmall,
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  const ListRoom(),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class Appbar extends GetView<ListRoomController>
+    implements PreferredSizeWidget {
+  const Appbar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(150),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.redAccent,
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(14),
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Get.back(),
+                      icon: const Icon(
+                        Icons.arrow_back_outlined,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Royale President Hotel',
+                          style: Get.textTheme.titleMedium!.copyWith(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              const WidgetSpan(
+                                alignment: PlaceholderAlignment.middle,
+                                child: Icon(
+                                  Icons.location_on_outlined,
+                                  size: 18,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const TextSpan(
+                                text: ' ',
+                              ),
+                              TextSpan(
+                                text: 'Hồ Chí Minh',
+                                style: Get.textTheme.bodySmall!
+                                    .copyWith(color: Colors.white),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.bookmark_outline_outlined,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => const Size.fromHeight(80);
+}
+
+class ListImage extends GetView<ListRoomController> {
+  const ListImage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: controller.listImage.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: ExtendedImage.network(
+                controller.listImage[index],
+                width: 155,
+                height: 100,
+                fit: BoxFit.cover,
+                borderRadius: const BorderRadius.all(Radius.circular(6)),
+                shape: BoxShape.rectangle,
+                loadStateChanged: (ExtendedImageState state) {
+                  switch (state.extendedImageLoadState) {
+                    case LoadState.loading:
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    case LoadState.completed:
+                      return null;
+
+                    case LoadState.failed:
+                      return Image.asset(
+                        Assets.assset.images.noImage.path,
+                        package: LocalVariable.packageName,
+                      );
+                  }
+                },
+              ),
+            );
+          }),
+    );
+  }
+}
+
+class ListRoom extends StatelessWidget {
+  const ListRoom({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: 2,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.grey[200]!),
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: Get.width,
+                  child: DecoratedBox(
+                    decoration: const BoxDecoration(
+                      color: Colors.redAccent,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(12),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Standard Room',
+                        style: Get.textTheme.bodyLarge!
+                            .copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.people),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '2 guest(s)/room',
+                        style: Get.textTheme.bodySmall,
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.people),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '2 guest(s)/room',
+                        style: Get.textTheme.bodySmall,
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.people),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            '2 guest(s)/room',
+                            style: Get.textTheme.bodySmall,
+                          )
+                        ],
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                                text:
+                                    '7.600.000đ', // Replace with your original price
+                                style: Get.textTheme.bodySmall!.copyWith(
+                                  fontStyle: FontStyle.italic,
+                                  decoration: TextDecoration.lineThrough,
+                                )),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.people),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            '2 guest(s)/room',
+                            style: Get.textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            '4.600.000đ',
+                            style: Get.textTheme.bodyLarge,
+                          ),
+                          Text(
+                            '/per night',
+                            style: Get.textTheme.bodySmall,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(''),
+                      InkWell(
+                        onTap: () => Get.toNamed(BookingPage.routeName),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                              color: Colors.redAccent,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Center(
+                              child: Text(
+                                'Book now',
+                                style: Get.textTheme.bodyMedium!
+                                    .copyWith(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

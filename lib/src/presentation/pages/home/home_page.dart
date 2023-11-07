@@ -1,6 +1,7 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:package_login/core/constrants/localVariable.dart';
 import 'package:package_login/core/gen/assets.gen.dart';
 import 'package:package_login/src/domain/models/model_search.dart';
@@ -18,9 +19,9 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
               const AppBar(),
@@ -98,7 +99,6 @@ class HomePage extends GetView<HomeController> {
                                       );
                                     case LoadState.completed:
                                       return null;
-
                                     case LoadState.failed:
                                       return Image.asset(
                                         Assets.assset.images.noImage.path,

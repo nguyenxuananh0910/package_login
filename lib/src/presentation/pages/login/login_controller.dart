@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_login/core/utils/error_empty.dart';
-import 'package:package_login/src/presentation/pages/home/home_page.dart';
+import 'package:package_login/src/presentation/pages/navigator_menu/navigator_menu_page.dart';
 
 class LoginController extends GetxController {
   late TextEditingController emailEditController;
@@ -33,7 +33,7 @@ class LoginController extends GetxController {
         passwordError.call(ErrorEmptys.passwordSpace);
         return;
       }
-      Get.toNamed(HomePage.routeName);
+      Get.toNamed(NavigatorMenuPage.routeName);
       _cleanInput();
     }
   }

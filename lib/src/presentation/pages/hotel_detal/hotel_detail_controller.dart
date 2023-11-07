@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HotelDetailController extends GetxController {
   final activeIndex = 0.obs;
@@ -32,6 +34,32 @@ class HotelDetailController extends GetxController {
 
   void toggleExpanded() {
     isExpanded.value = !isExpanded.value;
+  }
+
+  // The current location of the map.
+  LatLng _currentLocation = const LatLng(10.794670, 106.709151);
+
+  // The zoom level of the map.
+  final double _zoomLevel = 15.5;
+
+  // Getters for the current location, zoom level, and markers.
+  LatLng get currentLocation => _currentLocation;
+  double get zoomLevel => _zoomLevel;
+
+  // Setters for the current location, zoom level, and markers.
+  set currentLocation(LatLng location) {
+    _currentLocation = location;
+    update();
+  }
+
+  void openGoogleMapsApp(double latitude, double longitude) async {
+    final String googleMapsUrl =
+        "https://www.google.com/maps/search/?api=1&query=$latitude,$longitude";
+    if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
+      await launchUrl(Uri.parse(googleMapsUrl));
+    } else {
+      throw 'Could not launch $googleMapsUrl';
+    }
   }
 
   @override

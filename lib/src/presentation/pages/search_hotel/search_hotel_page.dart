@@ -5,9 +5,9 @@ import 'package:package_login/core/constrants/localVariable.dart';
 import 'package:package_login/core/gen/assets.gen.dart';
 import 'package:package_login/core/utils/extension.dart';
 import 'package:package_login/src/domain/models/model_search.dart';
-import 'package:package_login/src/presentation/pages/filter/filter_page.dart';
 import 'package:package_login/src/presentation/pages/hotel_detal/hotel_detail_page.dart';
 import 'package:package_login/src/presentation/pages/search_hotel/search_hotel_controller.dart';
+import 'package:package_login/src/presentation/widgets/bottomsheet/filter/filter_page.dart';
 import 'package:package_login/src/presentation/widgets/search_hotel_widget/widget_search_hotel_.dart';
 
 class SearchHotelPage extends GetView<SearchHotelController> {
@@ -59,7 +59,7 @@ class SearchHotelPage extends GetView<SearchHotelController> {
           ),
         ),
       ),
-      bottomSheet: const BottomsheetFilter(),
+      bottomSheet: const BottomSheetFilter(),
     );
   }
 }
@@ -398,8 +398,8 @@ class ListHotel extends StatelessWidget {
   }
 }
 
-class BottomsheetFilter extends StatelessWidget {
-  const BottomsheetFilter({Key? key}) : super(key: key);
+class BottomSheetFilter extends StatelessWidget {
+  const BottomSheetFilter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -415,8 +415,13 @@ class BottomsheetFilter extends StatelessWidget {
               onTap: () => Get.bottomSheet(SizedBox(
                 height: 500,
                 width: Get.width,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.white),
+                child: const DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(12),
+                    ),
+                  ),
                   child: FilterPage(),
                 ),
               )),

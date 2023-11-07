@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:package_login/src/presentation/pages/filter/filter_controller.dart';
+import 'package:package_login/src/presentation/widgets/bottomsheet/filter/filter_controller.dart';
 
 class FilterPage extends StatelessWidget {
   const FilterPage({Key? key}) : super(key: key);
