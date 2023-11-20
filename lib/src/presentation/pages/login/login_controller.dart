@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:package_login/core/gen/assets.gen.dart';
 import 'package:package_login/core/utils/error_empty.dart';
 import 'package:package_login/src/presentation/pages/navigator_menu/navigator_menu_page.dart';
+
+import '../../widgets/loading.dart';
 
 class LoginController extends GetxController {
   late TextEditingController emailEditController;
@@ -12,10 +16,12 @@ class LoginController extends GetxController {
   final RxBool isLoading = true.obs;
   RxBool showPassword = false.obs;
   final keyForm = GlobalKey<FormState>();
+
   @override
   void onInit() {
     emailEditController = TextEditingController(text: 'anh@gmail.com');
     passwordEditController = TextEditingController();
+
     super.onInit();
   }
 
@@ -33,8 +39,20 @@ class LoginController extends GetxController {
         passwordError.call(ErrorEmptys.passwordSpace);
         return;
       }
-      Get.toNamed(NavigatorMenuPage.routeName);
+
+      login();
       _cleanInput();
+    }
+  }
+
+  Future login() async {
+    Get.toNamed(LoadingPage.routeName);
+    try {
+      await Future.delayed(Duration(seconds: 1));
+      Get.offAllNamed(NavigatorMenuPage.routeName);
+    } catch (e) {
+      Get.back();
+      // Get.log('khong the login');
     }
   }
 

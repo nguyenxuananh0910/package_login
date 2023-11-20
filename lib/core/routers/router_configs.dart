@@ -17,6 +17,8 @@ import 'package:package_login/src/presentation/pages/navigator_menu/navigator_me
 import 'package:package_login/src/presentation/pages/navigator_menu/navigator_menu_page.dart';
 import 'package:package_login/src/presentation/pages/profile/profile_controller.dart';
 import 'package:package_login/src/presentation/pages/profile/profile_page.dart';
+import 'package:package_login/src/presentation/pages/room_detail/room_detail_controller.dart';
+import 'package:package_login/src/presentation/pages/room_detail/room_detail_page.dart';
 import 'package:package_login/src/presentation/pages/search_hotel/search_hotel_controller.dart';
 import 'package:package_login/src/presentation/pages/search_hotel/search_hotel_page.dart';
 import 'package:package_login/src/presentation/pages/sign/sign_controller.dart';
@@ -24,6 +26,8 @@ import 'package:package_login/src/presentation/pages/sign/sign_page.dart';
 import 'package:package_login/src/presentation/widgets/bottomsheet/bottomsheet_location/bottomsheet_location_page.dart';
 import 'package:package_login/src/presentation/widgets/bottomsheet/filter/filter_page.dart';
 import 'package:package_login/src/presentation/widgets/dia_log/dialog_date/dialog_date_page.dart';
+import 'package:package_login/src/presentation/widgets/loading.dart';
+import 'package:package_login/src/presentation/widgets/search_hotel_widget/widget_search_hotel_controller.dart';
 
 class RouterUserConfigs {
   static final List<GetPage<void>> routes = [
@@ -47,6 +51,7 @@ class RouterUserConfigs {
       binding: BindingsBuilder<void>(() {
         Get.lazyPut(NavigatorMenuController.new);
         Get.lazyPut(HomeController.new);
+        Get.lazyPut(WidgetSearchHotelController.new);
         Get.lazyPut(MyBookingController.new);
         Get.lazyPut(ProfileController.new);
       }),
@@ -124,6 +129,17 @@ class RouterUserConfigs {
       binding: BindingsBuilder<void>(
         () => Get.lazyPut(ListRoomController.new),
       ),
+    ),
+    GetPage(
+      name: RoomDetailPage.routeName,
+      page: () => const RoomDetailPage(),
+      binding: BindingsBuilder<void>(
+        () => Get.lazyPut(RoomDetailController.new),
+      ),
+    ),
+    GetPage(
+      name: LoadingPage.routeName,
+      page: () => const LoadingPage(),
     ),
   ];
 }

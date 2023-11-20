@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:package_login/core/constrants/localVariable.dart';
 import 'package:package_login/core/gen/assets.gen.dart';
 import 'package:package_login/core/utils/extension.dart';
-import 'package:package_login/src/presentation/pages/booking/booking_widgets/booking_overview/booking_overview_controller.dart';
+import 'package:package_login/src/presentation/pages/booking/booking_controller.dart';
+import 'package:package_login/src/presentation/pages/search_hotel/search_hotel_controller.dart';
 
 class BookingOverviewPage extends StatelessWidget {
   static const String routeName = '/BookingOverview';
@@ -12,8 +13,8 @@ class BookingOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<BookingOverviewController>(
-      init: BookingOverviewController(),
+    return GetBuilder<BookingController>(
+      init: BookingController(),
       builder: (controller) => Container(
         width: Get.width,
         height: Get.height,
@@ -28,83 +29,7 @@ class BookingOverviewPage extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Column(
-                    children: [
-                      const Divider(
-                        color: Colors.grey,
-                        height: 2,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Check-in',
-                              style: Get.textTheme.titleMedium!.copyWith(),
-                            ),
-                            Text(
-                              DateTime.now().formatDateToString(),
-                              style: Get.textTheme.bodySmall?.copyWith(),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        color: Colors.grey,
-                        height: 2,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Check-out',
-                              style: Get.textTheme.titleMedium!.copyWith(),
-                            ),
-                            Text(
-                              DateTime.now().formatDateToString(),
-                              style: Get.textTheme.bodySmall?.copyWith(),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        color: Colors.grey,
-                        height: 2,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'For',
-                              style: Get.textTheme.titleMedium!.copyWith(),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '2 nights, ',
-                                    style: Get.textTheme.bodySmall!.copyWith(),
-                                  ),
-                                  TextSpan(
-                                    text: '1 room ',
-                                    style: Get.textTheme.bodySmall!.copyWith(),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                const SearchViewBooking(),
                 const SizedBox(
                   height: 10,
                 ),
@@ -325,6 +250,91 @@ class HotelSelected extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class SearchViewBooking extends GetView<SearchHotelController> {
+  const SearchViewBooking({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Column(
+        children: [
+          const Divider(
+            color: Colors.grey,
+            height: 2,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Check-in',
+                  style: Get.textTheme.titleMedium!.copyWith(),
+                ),
+                Text(
+                  controller.dateRange.value!.start.formatDateToString(),
+                  style: Get.textTheme.bodySmall?.copyWith(),
+                ),
+              ],
+            ),
+          ),
+          const Divider(
+            color: Colors.grey,
+            height: 2,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Check-out',
+                  style: Get.textTheme.titleMedium!.copyWith(),
+                ),
+                Text(
+                  controller.dateRange.value!.end.formatDateToString(),
+                  style: Get.textTheme.bodySmall?.copyWith(),
+                ),
+              ],
+            ),
+          ),
+          const Divider(
+            color: Colors.grey,
+            height: 2,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'For',
+                  style: Get.textTheme.titleMedium!.copyWith(),
+                ),
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '${controller.numberRoom.value} nights, ',
+                        style: Get.textTheme.bodySmall!.copyWith(),
+                      ),
+                      TextSpan(
+                        text: '${controller.numberAdult.value} room ',
+                        style: Get.textTheme.bodySmall!.copyWith(),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

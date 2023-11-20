@@ -10,8 +10,8 @@ class WidgetSearchHotelController extends GetxController {
     start: DateTime.now(),
   ).obs;
   final NoTiConfig tinTucConfig = Get.find();
-  final RxInt numberRoom = 0.obs;
-  final RxInt numberAdult = 0.obs;
+  final RxInt numberRoom = 1.obs;
+  final RxInt numberAdult = 2.obs;
   List<String> dsTp = ['Hồ Chi Minh', 'Đà Lạt', 'Đà Nẵng', 'Hà Nội'];
   final RxList<String> listitem = <String>[].obs;
   final Rxn<String> selectedLocation = Rxn();
@@ -28,26 +28,26 @@ class WidgetSearchHotelController extends GetxController {
 
   void updateDateRange(DateTimeRange newDateRange) {
     dateRange.value = newDateRange;
-  } // var numberRoom = RxInt(0);
+  }
 
   void incrementRoom() {
-    numberRoom.value++; // Tăng giá trị
+    numberRoom.value++;
   }
 
   void decrementRoom() {
     if (numberRoom.value > 0) {
       numberRoom.value--;
-    } // Giảm giá trị
+    }
   }
 
   void incrementAdult() {
-    numberAdult.value++; // Tăng giá trị
+    numberAdult.value++;
   }
 
   void decrementAdult() {
     if (numberAdult.value > 0) {
       numberAdult.value--;
-    } // Giảm giá trị
+    }
   }
 
   Future<void> fetchData() async {

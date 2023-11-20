@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_login/core/utils/error_empty.dart';
 import 'package:package_login/core/utils/extension.dart';
-import 'package:package_login/src/presentation/pages/booking/booking_widgets/detail_customer_booking/detail_customer_controller.dart';
+import 'package:package_login/src/presentation/pages/booking/booking_controller.dart';
 
 class DetailCustomerPage extends StatelessWidget {
   static const String routeName = '/DetailCustomerPage';
@@ -10,8 +10,8 @@ class DetailCustomerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DetailCustomerController>(
-      init: DetailCustomerController(),
+    return GetBuilder<BookingController>(
+      init: BookingController(),
       builder: (controller) => Container(
         width: Get.width,
         height: Get.height,

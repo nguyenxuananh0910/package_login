@@ -50,8 +50,10 @@ class BookingPage extends GetView<BookingController> {
                           () => Text(
                             (controller.currentStepAndPage ==
                                     controller.pages.length - 1)
-                                ? 'payment'
+                                ? 'Confirm Booking'
                                 : 'Next Step',
+                            style: Get.textTheme.bodyMedium!
+                                .copyWith(color: Colors.white),
                           ),
                         ),
                       ),

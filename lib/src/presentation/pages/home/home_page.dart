@@ -1,7 +1,6 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:package_login/core/constrants/localVariable.dart';
 import 'package:package_login/core/gen/assets.gen.dart';
 import 'package:package_login/src/domain/models/model_search.dart';
@@ -34,8 +33,8 @@ class HomePage extends GetView<HomeController> {
                       color: Colors.white),
                   child: WidgetSearchHotelPage(
                     title: 'Search Your Hotel',
-                    onChange: (SearchModel data) {
-                      Get.toNamed(
+                    onChange: (SearchModel data) async {
+                      await Get.toNamed(
                         SearchHotelPage.routeName,
                         preventDuplicates: false,
                         arguments: ArgSearchHotel(

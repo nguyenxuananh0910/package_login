@@ -441,7 +441,7 @@ class GetFooter extends StatelessWidget {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                     color: Colors.deepOrange,
-                    borderRadius: BorderRadius.circular(30)),
+                    borderRadius: BorderRadius.circular(18)),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Text(

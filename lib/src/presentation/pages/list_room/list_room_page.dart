@@ -5,6 +5,7 @@ import 'package:package_login/core/constrants/localVariable.dart';
 import 'package:package_login/core/gen/assets.gen.dart';
 import 'package:package_login/src/presentation/pages/booking/booking_page.dart';
 import 'package:package_login/src/presentation/pages/list_room/list_room_controller.dart';
+import 'package:package_login/src/presentation/pages/room_detail/room_detail_page.dart';
 
 class ListRoomPage extends GetView<ListRoomController> {
   static const String routeName = '/ListRoomPage';
@@ -59,6 +60,9 @@ class ListRoomPage extends GetView<ListRoomController> {
                         },
                       ),
                     ),
+                  ),
+                  Divider(
+                    color: Colors.grey[400],
                   ),
                   const ListRoom(),
                 ],
@@ -205,167 +209,136 @@ class ListRoom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 2,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(
-            shape: RoundedRectangleBorder(
-              side: BorderSide(color: Colors.grey[200]!),
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: Column(
+    return InkWell(
+      onTap: () => Get.toNamed(RoomDetailPage.routeName),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6),
+            child: Row(
               children: [
-                SizedBox(
-                  width: Get.width,
-                  child: DecoratedBox(
-                    decoration: const BoxDecoration(
-                      color: Colors.redAccent,
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(12),
-                      ),
+                const Icon(Icons.people),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  '2 guest(s)/room',
+                  style: Get.textTheme.bodySmall,
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              children: [
+                const Icon(Icons.people),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  '2 guest(s)/room',
+                  style: Get.textTheme.bodySmall,
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.people),
+                    const SizedBox(
+                      width: 10,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Standard Room',
-                        style: Get.textTheme.bodyLarge!
-                            .copyWith(color: Colors.white),
-                      ),
-                    ),
-                  ),
+                    Text(
+                      '2 guest(s)/room',
+                      style: Get.textTheme.bodySmall,
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
+                RichText(
+                  text: TextSpan(
                     children: [
-                      const Icon(Icons.people),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        '2 guest(s)/room',
-                        style: Get.textTheme.bodySmall,
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.people),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        '2 guest(s)/room',
-                        style: Get.textTheme.bodySmall,
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.people),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            '2 guest(s)/room',
-                            style: Get.textTheme.bodySmall,
-                          )
-                        ],
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                                text:
-                                    '7.600.000đ', // Replace with your original price
-                                style: Get.textTheme.bodySmall!.copyWith(
-                                  fontStyle: FontStyle.italic,
-                                  decoration: TextDecoration.lineThrough,
-                                )),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.people),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            '2 guest(s)/room',
-                            style: Get.textTheme.bodySmall,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            '4.600.000đ',
-                            style: Get.textTheme.bodyLarge,
-                          ),
-                          Text(
-                            '/per night',
-                            style: Get.textTheme.bodySmall,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(''),
-                      InkWell(
-                        onTap: () => Get.toNamed(BookingPage.routeName),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                              color: Colors.redAccent,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Center(
-                              child: Text(
-                                'Book now',
-                                style: Get.textTheme.bodyMedium!
-                                    .copyWith(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      TextSpan(
+                          text:
+                              '7.600.000đ', // Replace with your original price
+                          style: Get.textTheme.bodySmall!.copyWith(
+                            fontStyle: FontStyle.italic,
+                            decoration: TextDecoration.lineThrough,
+                          )),
                     ],
                   ),
                 )
               ],
             ),
           ),
-        );
-      },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.people),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      '2 guest(s)/room',
+                      style: Get.textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '4.600.000đ',
+                      style: Get.textTheme.bodyLarge,
+                    ),
+                    Text(
+                      '/per night',
+                      style: Get.textTheme.bodySmall,
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(''),
+                InkWell(
+                  onTap: () => Get.toNamed(BookingPage.routeName),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.circular(16)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12.0, horizontal: 16),
+                      child: Center(
+                        child: Text(
+                          'Book now',
+                          style: Get.textTheme.bodyMedium!
+                              .copyWith(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

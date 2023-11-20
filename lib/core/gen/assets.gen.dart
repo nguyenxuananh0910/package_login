@@ -30,11 +30,26 @@ class $AsssetAnimationsGen {
 class $AsssetIconsGen {
   const $AsssetIconsGen();
 
+  /// File path: assset/icons/momo.png
+  AssetGenImage get momo => const AssetGenImage('assset/icons/momo.png');
+
+  /// File path: assset/icons/tpbank.webp
+  AssetGenImage get tpbank => const AssetGenImage('assset/icons/tpbank.webp');
+
   /// File path: assset/icons/upload.png
   AssetGenImage get upload => const AssetGenImage('assset/icons/upload.png');
 
+  /// File path: assset/icons/vcb.png
+  AssetGenImage get vcb => const AssetGenImage('assset/icons/vcb.png');
+
+  /// File path: assset/icons/vnpay.jpg
+  AssetGenImage get vnpay => const AssetGenImage('assset/icons/vnpay.jpg');
+
+  /// File path: assset/icons/zalopay.png
+  AssetGenImage get zalopay => const AssetGenImage('assset/icons/zalopay.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [upload];
+  List<AssetGenImage> get values => [momo, tpbank, upload, vcb, vnpay, zalopay];
 }
 
 class $AsssetImagesGen {
@@ -47,8 +62,11 @@ class $AsssetImagesGen {
   AssetGenImage get noImageUser =>
       const AssetGenImage('assset/images/no_image_user.jpg');
 
+  /// File path: assset/images/qrcode.png
+  AssetGenImage get qrcode => const AssetGenImage('assset/images/qrcode.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [noImage, noImageUser];
+  List<AssetGenImage> get values => [noImage, noImageUser, qrcode];
 }
 
 class Assets {

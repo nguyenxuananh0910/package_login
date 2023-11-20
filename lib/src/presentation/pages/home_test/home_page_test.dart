@@ -12,104 +12,109 @@ class HomePageTest extends GetView<HomeTestController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
-        SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey.withOpacity(0.1)),
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.center,
-                      // controller: controller.soBienNhanController,
-                      style: context.theme.textTheme.titleMedium?.copyWith(
-                        color: context.theme.colorScheme.primary,
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 10),
-                        isCollapsed: true,
-                        alignLabelWithHint: true,
-                        prefixIcon: const Icon(Icons.search),
-                        suffixIcon: const Icon(
-                          Icons.filter_list_outlined,
-                          color: Colors.green,
+      body: Column(
+        children: [
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.grey.withOpacity(0.1)),
+                      child: TextField(
+                        textAlignVertical: TextAlignVertical.center,
+                        // controller: controller.soBienNhanController,
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          color: context.theme.colorScheme.primary,
                         ),
-                        hintText: 'Search',
-                        hintStyle: context.theme.textTheme.bodyLarge
-                            ?.copyWith(color: Colors.grey.withOpacity(0.6)),
-
-                        // errorText: controller.noiDungError.value,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 10),
+                          isCollapsed: true,
+                          alignLabelWithHint: true,
+                          prefixIcon: const Icon(Icons.search),
+                          suffixIcon: const Icon(
+                            Icons.filter_list_outlined,
+                            color: Colors.green,
+                          ),
+                          hintText: 'Search',
+                          hintStyle: context.theme.textTheme.bodyLarge
+                              ?.copyWith(color: Colors.grey.withOpacity(0.6)),
+                          // errorText: controller.noiDungError.value,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: SizedBox(
-                    height: 50,
-                    child: Obx(() => ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.listitem.length,
-                        itemBuilder: (context, index) {
-                          var item = controller.listitem[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: DecoratedBox(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: SizedBox(
+                      height: 50,
+                      child: Obx(
+                        () => ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: controller.listitem.length,
+                          itemBuilder: (context, index) {
+                            var item = controller.listitem[index];
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: DecoratedBox(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     border: Border.all(
                                         width: 2, color: Colors.green)),
                                 child: Center(
-                                    child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12.0),
-                                  child: Text(item),
-                                ))),
-                          );
-                        })),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Recommended  (484,579)',
-                        style: Get.textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.bold),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0),
+                                    child: Text(item),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                      const Row(
-                        children: [
-                          Icon(
-                            Icons.menu_outlined,
-                            color: Colors.green,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(Icons.add_box_outlined)
-                        ],
-                      )
-                    ],
+                    ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Recommended  (484,579)',
+                          style: Get.textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        const Row(
+                          children: [
+                            Icon(
+                              Icons.menu_outlined,
+                              color: Colors.green,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(Icons.add_box_outlined)
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: DecoratedBox(
-            decoration:
-                BoxDecoration(color: Colors.greenAccent.withOpacity(0.2)),
-            child: ListView.builder(
+          Expanded(
+            child: DecoratedBox(
+              decoration:
+                  BoxDecoration(color: Colors.greenAccent.withOpacity(0.2)),
+              child: ListView.builder(
                 padding: const EdgeInsets.only(top: 10),
                 itemCount: 10,
                 itemBuilder: (context, index) {
@@ -239,10 +244,12 @@ class HomePageTest extends GetView<HomeTestController> {
                       ),
                     ),
                   );
-                }),
-          ),
-        )
-      ]),
+                },
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
